@@ -20,12 +20,10 @@ def load_saved_artifacts():
     with open(parent_path / "model/class_dictionary.json", "r") as f:
         __class_name_to_number = json.load(f)
         __class_number_to_name = {v:k for k,v in __class_name_to_number.items()}
-    print(__class_number_to_name)
     global __model
     if __model is None:
         with open(parent_path / "model/trained_model.pkl", "rb") as f:
             __model = joblib.load(f)
-    print(__model)
     print("loading saved artifacts...done")
 
 def classify_image(image_base64_data, file_path=None):
@@ -91,5 +89,4 @@ def get_cropped_image_if_2_eyes(image_path, image_base64_data):
 if __name__ == "__main__":
     print('intialise......')
     load_saved_artifacts()
-    #print(classify_image(get_b64_image_for_virat()))
-    #print('test')
+    print(classify_image(get_b64_image_for_virat()))
